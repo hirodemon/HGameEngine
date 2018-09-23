@@ -11,3 +11,5 @@
 #include <mat4x4.hpp>
 #include <gtc\matrix_transform.hpp>
 #include <gtc\type_ptr.hpp>
+//SOIL2
+#include <SOIL2.h>
