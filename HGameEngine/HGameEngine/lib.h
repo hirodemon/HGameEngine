@@ -1,6 +1,12 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
 //GLEW
+
 #include <glew.h>
+
 //GLFW
 #include <glfw3.h>
 //GLM
