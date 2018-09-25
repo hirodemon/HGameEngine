@@ -6,7 +6,7 @@ in vec2 vs_texcoord;
 
 out vec4 fs_color;
 
-void main()
+void main(void)
 {
 	fs_color = vec4(vs_color, 1.f);
 }

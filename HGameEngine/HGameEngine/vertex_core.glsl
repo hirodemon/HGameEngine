@@ -8,7 +8,7 @@ out vec3 vs_position;
 out vec3 vs_color;
 out vec2 vs_textcoord;
 
-void main()
+void main(void)
 {
 	vs_position = vertex_position;
 	vs_color = vertex_color;
