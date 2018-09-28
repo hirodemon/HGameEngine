@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -19,11 +19,14 @@
 #include <gtc\type_ptr.hpp>
 //SOIL2
 #include <SOIL2.h>
+*/
 
+#include "Shader.h"
 
 struct Vertex
 {
 	glm::vec3 position;
 	glm::vec3 color;
 	glm::vec2 texcoord;
+	glm::vec3 normal;
 };

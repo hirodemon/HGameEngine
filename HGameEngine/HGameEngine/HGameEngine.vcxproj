@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="lib.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HGameEngine.cpp" />
