@@ -20,7 +20,6 @@
 //SOIL2
 #include <SOIL2.h>
 */
-
 #include "Shader.h"
 
 struct Vertex

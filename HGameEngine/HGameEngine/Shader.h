@@ -30,7 +30,7 @@ private:
 
 
 	//Private functions
-	std::string loadShaderSource(char* fileName) {
+	std::string loadShaderSource(const char* fileName) {
 		std::string temp = "";
 		std::string src = "";
 
@@ -51,7 +51,7 @@ private:
 		return src;
 	}
 
-	GLuint loadShader(GLenum type, char* fileName) {
+	GLuint loadShader(GLenum type, const char* fileName) {
 		char infoLog[512];
 		GLint success;
 
@@ -96,17 +96,22 @@ private:
 public:
 
 	//constructiors/destruct
-	Shader(const char vertexFile[],const char geometryFile[],const char fragmentFile[]) {
+	Shader(const char* vertexFile, const char* fragmentFile, const char* geometryFile  = "") {
+
 		GLuint vertexShader = 0;
 		GLuint geometryShader = 0;
 		GLuint fragmentShader = 0;
-		geometryFile = NULL;
+
+		
 
 		vertexShader = loadShader(GL_VERTEX_SHADER, vertexFile);
-		fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentFile); 
+		fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentFile);
 		if (geometryFile != "") {
 			geometryShader = loadShader(GL_GEOMETRY_SHADER, geometryFile);
 		}
+
+
+
 
 		this->linkProgram(vertexShader, geometryShader, fragmentShader);
 
@@ -124,5 +129,57 @@ public:
 	void use() {
 		glUseProgram(this->id);
 	}
+	void unuse() {
+		glUseProgram(0);
+	}
+
+	//Texture
+	void set1i(GLint value, const GLchar* name) {
+		this->use();
+		glUniform1i(glGetUniformLocation(this->id, name), value);
+		this->unuse();
+	}
+
+	//VEC
+	void setVec1f(GLfloat value, const GLchar* name) {
+		this->use();
+		glUniform1f(glGetUniformLocation(this->id, name), value);
+		this->unuse();
+	}
+	void setVec2(glm::vec2 value, const GLchar* name) {
+		this->use();
+		glUniform2fv(glGetUniformLocation(this->id, name), 1, glm::value_ptr(value));
+		this->unuse();
+	}
+	void setVec3f(glm::vec3 value, const GLchar* name) {
+		this->use();
+		glUniform3fv(glGetUniformLocation(this->id, name), 1, glm::value_ptr(value));
+		this->unuse();
+	}
+	void setVec4f(glm::vec4 value, const GLchar* name) {
+		this->use();
+		glUniform4fv(glGetUniformLocation(this->id, name), 1, glm::value_ptr(value));
+		this->unuse();
+	}
+
+	//MAT
+	void setMat2fv(glm::mat2 value, const GLchar* name, bool transpose = GL_FALSE) {
+		this->use();
+		glUniformMatrix2fv(glGetUniformLocation(this->id, name), 1, transpose, glm::value_ptr(value));
+		this->unuse();
+	}
+	void setMat3fv(glm::mat3 value, const GLchar* name, bool transpose = GL_FALSE) {
+		this->use();
+		glUniformMatrix3fv(glGetUniformLocation(this->id, name), 1, transpose, glm::value_ptr(value));
+		this->unuse();
+	}
+	void setMat4fv(glm::mat4 value, const GLchar* name, bool transpose = GL_FALSE) {
+		this->use();
+		glUniformMatrix4fv(glGetUniformLocation(this->id, name), 1, transpose, glm::value_ptr(value));
+		this->unuse();
+	}
+
+	
+
 
 };
